@@ -1,0 +1,97 @@
+Pipeline {
+    agent any
+
+    stages{
+        stage ('compile stage') {
+
+            steps {
+                WithMaven (maven : 'maven-3.8.5') {
+                    sh 'mvn clean compile'
+                }
+            }
+        }    
+        
+        stage ('Testing stage') {
+
+            steps{
+                withMaven (maven :'maven-3.8.5') {
+                    sh 'mvn test'
+                }
+            }
+        }   
+            
+        stage ('Deployment Stage'){
+            steps {
+                withMaven (maven : 'maven-3.8.5'){
+                    sh 'mvn deploy'
+                }
+            }
+        }      
+        
+    }
+ }
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+}
